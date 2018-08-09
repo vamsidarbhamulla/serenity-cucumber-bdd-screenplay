@@ -5,14 +5,18 @@ Feature: Checkout shopping cart
 
 
   Background: User added a list of items to shopping cart that they want to buy
-    Given "Carla" wants to buy 2 items
-    When "she" visit "automation practice" website
-    Then "she" add 2 items to shopping cart
+    Given Carla is a registered member
 
-  Scenario: Order the shopping cart items
-    Given "Carla" shopping cart has items to buy
-    When "she" sign in with her existing account
-    And provides address
-    And provides shipping details
-    And get payment details
-    Then should see a successful order confirmation
+  Scenario: Reviewing an order for items in the shopping cart
+    Given Carla has placed the following items in her shopping cart:
+      | Product   | Color | Size | Quantity |
+      | Blouse    | Black | M    | 1        |
+    When she proceeds to the checkout
+    Then she should see a summary of the items she wants to order:
+      | Product | Description | Unit Price | Qty | Total |
+      | Blouse  | Blouse      | 27.00      | 1   | 27.00 |
+    And she should see the total cost including shipping:
+      | Total Products | Total Shipping | Total |
+      | 27.00          | 2.00           | 29.00 |
+
+# TODO: Other similar scenarios which continue the order process through to shipping
