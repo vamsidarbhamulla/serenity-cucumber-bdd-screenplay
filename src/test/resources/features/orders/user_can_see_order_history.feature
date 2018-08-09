@@ -3,13 +3,20 @@ Feature: User can access their order history
   as an online customer
   user should be able to access their order history
 
-
-  Background: User has ordered items previously
-    Given "Carla" has completed one order with 2 items earlier
-    Then her order history has 2 items listed
+Background: Carla is a registered member
+  Given Carla is a registered member
+  And Carla has completed an order for the following items:
+    | Product                      | Color | Size | Quantity |
+    | Blouse                       | Black | M    | 1        |
+    | Faded Short Sleeve T-shirts  | Orange| M    | 2        |
 
   Scenario: User access their order history
-    Given "Carla" sign in with her account
-    When she access her Account profile
-    Then she should be able to access her order history
-    And check the status of her previous order
+
+   Note: I haven't checked the order history page, so adjust the displayed columns accordingly
+
+    Given Carla has signed in with her account
+    When she views her previous orders
+    Then she should see the following orders:
+    | Product                      | Status    |
+    | Blouse                       | Delivered |
+    | Faded Short Sleeve T-shirts  | Delivered |

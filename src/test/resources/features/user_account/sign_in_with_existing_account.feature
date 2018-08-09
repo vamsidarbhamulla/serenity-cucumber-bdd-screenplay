@@ -4,13 +4,7 @@ Feature: Sign in with an existing account
   to purchase new items
   and access their order history
 
-
-  Background: User visits our "E-Commerce" website
-    Given "Carla" access website URL "automationpractice.com/index.php"
-    Then "she" visits website homepage
-
-
-  Scenario: Sign_in with valid user account
-    Given "Carla" access the sign in page
-    When "she" provide her login details
-    Then "she" should be able to see her account profile
+  Scenario: Sign in with valid user account
+    Given Carla is a registered member
+    When she logs in with valid credentials
+    Then she should be able to view her account profile
