@@ -6,5 +6,5 @@ import org.junit.runner.RunWith;
 
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(features="src/test/resources/features", plugin = {"pretty"})
-public class CucumberSerenityBDDTestsRunner {
+public class CucumberSerenityBDDRunner {
 }
