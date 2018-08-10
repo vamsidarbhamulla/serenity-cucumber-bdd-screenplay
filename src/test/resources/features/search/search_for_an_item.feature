@@ -4,7 +4,7 @@ Feature: Search for an item
   user should be able to search for an item
 
   Background: User visits our "E-Commerce" website
-    Given Carla is a registered user
+    Given Carla is a registered member
 
   Scenario: Search products from navigation-menu
     Given Carla wants to buy T-shirt
