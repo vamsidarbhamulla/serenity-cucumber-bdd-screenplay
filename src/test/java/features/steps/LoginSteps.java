@@ -2,7 +2,7 @@ package features.steps;
 
 import net.thucydides.core.annotations.Step;
 
-public class LoginSteps {
+public class LoginSteps { // #TODO Replace class name with a better suitable name
 
 
     
@@ -14,8 +14,8 @@ public class LoginSteps {
     public boolean shouldSignIn() {
         // For ideal applications this should be Login REST API response check
         // For legacy applications without REST END POINT  we can check db table for account data
-        // As we can't access DB or no REST API for our testing website we can default it to true
-        // But make sure you have an account created before using this method
+        // As we can't access DB or REST API for our testing website we can default it to true
+        // But make sure you have an account created before calling this method
         return true;
     }
 
