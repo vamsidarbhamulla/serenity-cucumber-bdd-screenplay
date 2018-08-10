@@ -103,7 +103,7 @@
             </plugin>
 
             <!-- Run mvn jetty:run and open localhost:9999 to show the report-->
-            <!-- The server will start after few requests , so expect a 404 for the first 4-5 requests -->
+            <!-- The server will start after few requests , so expect a 404 for the initial 4-5 requests -->
             <!-- This will be very useful if you are running your tests on a different server like jenkins.
                  In this case replace localhost with your jenkins server hostname or IP address.
                  Then you and your team can easily access the living documentation -->
