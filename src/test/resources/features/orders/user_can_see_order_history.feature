@@ -12,11 +12,9 @@ Background: Carla is a registered member
 
   Scenario: User access their order history
 
-   Note: I haven't checked the order history page, so adjust the displayed columns accordingly
-
     Given Carla has signed in with her account
     When she views her previous orders
     Then she should see the following orders:
     | Product                      | Status    |
-    | Blouse                       | Delivered |
-    | Faded Short Sleeve T-shirts  | Delivered |
+    | Blouse                       | On backorder |
+    | Faded Short Sleeve T-shirts  | On backorder |
