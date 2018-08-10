@@ -16,19 +16,32 @@
             <version>2.3.1</version>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-junit</artifactId>
             <version>2.3.1</version>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.serenity-bdd</groupId>
+            <artifactId>serenity-core</artifactId>
+            <version>${serenity.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.serenity-bdd</groupId>
+            <artifactId>serenity-junit</artifactId>
+            <version>${serenity.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.serenity-bdd</groupId>
+            <artifactId>serenity-cucumber</artifactId>
+            <version>${serenity.cucumber.version}</version>
         </dependency>
     </dependencies>
 
@@ -36,13 +49,57 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.7.0</version>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>2.22.0</version>
                 <configuration>
-                    <encoding>UTF-8</encoding>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                    <compilerArgument>-Werror</compilerArgument>
+                    <includes>
+                        <include>**/features/**/SD*.java</include>
+                        <include>**/features/**/*SD.java</include>
+                        <include>**/features/**/*StepDef.java</include>
+                    </includes>
+                    <systemProperties>
+                        <webdriver.driver>${webdriver.driver}</webdriver.driver>
+                    </systemProperties>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>net.serenity-bdd.maven.plugins</groupId>
+                <artifactId>serenity-maven-plugin</artifactId>
+                <version>${serenity.maven.version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>net.serenity-bdd</groupId>
+                        <artifactId>serenity-core</artifactId>
+                        <version>${serenity.version}</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <id>serenity-reports</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>aggregate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Run mvn jetty:run and open localhost:9999 to show the report-->
+            <!-- This will be very useful if you are running your tests on a different server like jenkins.
+                 In this case replace localhost with your jenkins server hostname or IP address.
+                 Then you and your team can easily access the living documentation -->
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.2.10.v20150310</version>
+                <configuration>
+                    <webAppSourceDirectory>${project.build.directory}/site/serenity</webAppSourceDirectory>
+                    <httpConnector>
+                        <port>9999</port>
+                    </httpConnector>
+                    <stopKey>stop</stopKey>
+                    <stopPort>1234</stopPort>
                 </configuration>
             </plugin>
         </plugins>
@@ -50,5 +107,9 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <serenity.version>1.9.35</serenity.version>
+        <serenity.maven.version>1.9.35</serenity.maven.version>
+        <serenity.cucumber.version>1.9.14</serenity.cucumber.version>
+        <webdriver.driver>firefox</webdriver.driver>
     </properties>
 </project>
