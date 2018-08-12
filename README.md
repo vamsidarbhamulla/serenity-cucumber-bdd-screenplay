@@ -8,7 +8,7 @@ By default the tests run on Chrome, you need to set the latest chromedriver inst
 
 ## Screenplay implementation
 
-These tests use tasks, actions, questions and page elements defined in `src/main/java/net/serenitybdd/demos/todos/screenplay`.
+These tests use tasks, actions, abilities, questions and page elements defined in `src/main/java/screenplay`.
 
 The overall project structure is shown below:
 ````
