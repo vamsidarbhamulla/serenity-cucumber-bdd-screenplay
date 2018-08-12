@@ -52,7 +52,8 @@ Open a command window and run:
 
     mvn jetty:run
     
-This will bring a new server up with the test results report. You can access it from [http://localhost:9998]
+This will bring a new server up with the test results report. You can access it from [http://localhost:9999]
+The server will start up after first few requests , so expect a 404 for the initial 4-5 requests.
 
 
 
