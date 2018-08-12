@@ -4,6 +4,28 @@ website "http://automationpractice.com/index.php"
 
 [![CircleCI](https://circleci.com/gh/vamsidarbhamulla/serenity-cucumber-bdd-screenplay.svg?style=svg)](https://circleci.com/gh/vamsidarbhamulla/serenity-cucumber-bdd-screenplay)
 
+By default the tests run on Chrome, you need to set the latest chromedriver instance on your system path.
+
+## Screenplay implementation
+
+These tests use tasks, actions, questions and page elements defined in `src/main/java/net/serenitybdd/demos/todos/screenplay`.
+
+The overall project structure is shown below:
+````
++ model
+    Domain model classes
++ abilities
+    Actor/User can do abilities
++ tasks
+    Business-level tasks
++ actions
+    UI interactions
++ user_interfaces
+    Page Objects and Page Elements
++ questions
+    Objects used to query the application
+````
+
 ## Get the code
 
 Git:
@@ -11,7 +33,7 @@ Git:
     git clone https://github.com/vamsidarbhamulla/serenity-cucumber-bdd-screenplay.git
     cd serenity-cucumber-bdd-screenplay
 
-## Use Maven
+## Running the Project Using Maven
 
 Open a command window and run:
 
@@ -20,7 +42,7 @@ Open a command window and run:
 This runs Cucumber features using Cucumber's JUnit runner. The `@RunWith(CucumberWithSerenity.class)` annotation on the `CucumberSerenityBDDRunner`
 class tells JUnit to kick off Cucumber.
 
-# Viewing the reports
+## Viewing the reports
 
 Maven command provided above will produce a Serenity test report in the `target/site/serenity` directory. Go take a look!
 
