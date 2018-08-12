@@ -35,6 +35,16 @@
         </dependency>
         <dependency>
             <groupId>net.serenity-bdd</groupId>
+            <artifactId>serenity-screenplay</artifactId>
+            <version>${serenity.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.serenity-bdd</groupId>
+            <artifactId>serenity-screenplay-webdriver</artifactId>
+            <version>${serenity.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.serenity-bdd</groupId>
             <artifactId>serenity-junit</artifactId>
             <version>${serenity.version}</version>
         </dependency>
@@ -60,14 +70,17 @@
                 <version>2.22.0</version>
                 <configuration>
                     <includes>
+                        <include>**/features/*Runner.java</include>
                         <include>**/features/**/SD*.java</include>
                         <include>**/features/**/*SD.java</include>
                         <include>**/features/**/*StepDef.java</include>
-                        <include>**/features/*Runner.java</include>
                     </includes>
                     <systemProperties>
-                        <webdriver.driver>${webdriver.driver}</webdriver.driver>
+                        <webdriver.base.url>${webdriver.base.url}</webdriver.base.url>
                     </systemProperties>
+                    <parallel>classes</parallel>
+                    <threadCount>${parallel.tests}</threadCount>
+                    <forkCount>${parallel.tests}</forkCount>
                 </configuration>
                 <executions>
                     <execution>
@@ -119,6 +132,14 @@
                     <stopPort>1234</stopPort>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
@@ -127,6 +148,9 @@
         <serenity.version>1.9.35</serenity.version>
         <serenity.maven.version>1.9.35</serenity.maven.version>
         <serenity.cucumber.version>1.9.14</serenity.cucumber.version>
-        <webdriver.driver>firefox</webdriver.driver>
+        <webdriver.driver>chrome</webdriver.driver>
+        <parallel.tests>4</parallel.tests>
+        <webdriver.base.url>http://automationpractice.com</webdriver.base.url>
+        <encoding>UTF-8</encoding>
     </properties>
 </project>
