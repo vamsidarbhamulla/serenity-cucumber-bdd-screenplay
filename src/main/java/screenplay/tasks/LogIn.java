@@ -20,17 +20,13 @@ public class LogIn implements Task {
 
     @Step
     public <T extends Actor> void performAs(T user) {
-        try {
-            user.attemptsTo(
-                    Enter.theValue(authenticated(user).username())
-                        .into(FILL_USERNAME),
-                    Enter.theValue(authenticated(user).password())
-                        .into(FILL_PASSWORD),
-                    Click.on(SIGN_IN)
-            );
-        } catch (CannotAuthenticateException e) {
-            e.printStackTrace();
-        }
+        user.attemptsTo(
+                Enter.theValue(authenticated(user).username())
+                    .into(FILL_USERNAME),
+                Enter.theValue(authenticated(user).password())
+                    .into(FILL_PASSWORD),
+                Click.on(SIGN_IN)
+        );
     }
 
     private Authenticate authenticated(Actor actor) throws CannotAuthenticateException {
