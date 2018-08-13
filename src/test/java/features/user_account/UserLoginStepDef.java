@@ -1,5 +1,6 @@
 package features.user_account;
 
+import cucumber.api.DataTable;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -19,30 +20,26 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class UserLoginStepDef {
 
-    private static final String userName = "test_account@getnada.com";
-    private static final String password =  "password";
-
     @Before
     public void set_the_stage(){
         OnStage.setTheStage(new OnlineCast());
     }
 
-    @Given("Carla is a registered member$")
-    public void carla_is_a_registered_member(){
-        theActorCalled("carla")
-                .whoCan(Authenticate.with(userName, password))
+    @Given("^that (.*) is a registered member$")
+    public void user_is_a_registered_member(String actor){
+        theActorCalled(actor)
                 .wasAbleTo(Start.prepareToSignIn());
     }
 
-    @When("she logs in with valid credentials$")
-    public void carla_has_signed_in_with_her_account(){
+    @When("^s?he logs in with valid credentials$")
+    public void user_has_signed_in_with_their_account(DataTable credentials){
         theActorInTheSpotlight()
-                .can(Authenticate.with(userName, password))
+                .whoCan(Authenticate.with(credentials))
                 .attemptsTo(LogIn.withCredentials());
     }
 
-    @Then("she should be able to view her account profile$")
-    public void carla_should_be_able_to_view_her_account_profile(){
+    @Then("^s?he should be able to view her account profile$")
+    public void user_should_be_able_to_view_their_account_profile(){
         theActorInTheSpotlight()
                 .should(seeThat(UserAccount.loaded(),
                         displays("title", equalTo("My account - My Store"))));
