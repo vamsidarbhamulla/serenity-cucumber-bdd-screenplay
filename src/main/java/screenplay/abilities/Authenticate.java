@@ -1,8 +1,12 @@
 package screenplay.abilities;
 
-import screenplay.exceptions.CannotAuthenticateException;
+import cucumber.api.DataTable;
 import net.serenitybdd.screenplay.Ability;
 import net.serenitybdd.screenplay.Actor;
+import screenplay.exceptions.CannotAuthenticateException;
+import utils.ConvertCucumberDataTable;
+
+import java.util.Map;
 
 public class Authenticate implements Ability {
 
@@ -12,6 +16,10 @@ public class Authenticate implements Ability {
     // instantiates the Ability and enables fluent DSL
     public static Authenticate with(String username,String password){
         return new Authenticate(username, password);
+    }
+    public static Authenticate with(DataTable credentialsData){
+        Map<String,String> credentials =  ConvertCucumberDataTable.toMap(credentialsData);
+        return new Authenticate(credentials.get("username"), credentials.get("password"));
     }
 
     public static Authenticate as(Actor actor) throws CannotAuthenticateException {
