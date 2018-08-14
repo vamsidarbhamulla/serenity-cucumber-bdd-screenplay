@@ -48,6 +48,9 @@ public class ConvertCucumberDataTable {
     }
 
     private  Map<String, String> convertToMap() {
+        if(this.rows.size() < 2){
+            throw new TableConverterException("A DataTable should have atleast one header and one data row");
+        }
         if(this.rows.size() == 2) { // in case of only header followed by one single data row
             addOnlySingleRowDataToMap();
             return Collections.unmodifiableMap(flatMap);
@@ -66,7 +69,8 @@ public class ConvertCucumberDataTable {
     }
 
     private void addOnlySingleRowDataToMap() {
-        List<String> singleDataRow = this.rows.get(1); //
+        List<String> singleDataRow = this.rows.get(1); // extract the last or second row from data table in case of single data row
+        validRowCheck(singleDataRow);
         for(int colCnt = 0; colCnt < headers.size(); colCnt++) {
             String key = headers.get(colCnt);
             String value = singleDataRow.get(colCnt);
