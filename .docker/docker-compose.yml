@@ -1,0 +1,16 @@
+version : "3.6"
+services:
+  selenium_server_chrome:
+    hostname: selenium_server_chrome
+    image: selenium/standalone-chrome
+    ports:
+      - 4444:4444
+  chrome_tests:
+    hostname: chrome_run
+    build:
+      context: ../
+      dockerfile: .docker/Dockerfile
+    volumes:
+      - ./target:/usr/repo/target
+    depends_on:
+    - selenium_server_chrome
