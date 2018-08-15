@@ -1,0 +1,10 @@
+version : "3.6"
+services:
+  chrome_test:
+    hostname: chrome_tests
+    build:
+      context: ../
+      dockerfile: .docker/run_chrome_tests
+    volumes:
+      - ./target:/usr/repo/target
+      - ~/.m2:/usr/repo/.m2
