@@ -1,0 +1,7 @@
+FROM vamccc/chromedriver2.41-maven3.5.3-jdk8:v0.1
+
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+COPY . /usr/src/app
+
+ENTRYPOINT ["mvn", "verify", "-Dwebdriver.driver=chrome", "-Dchrome.switches=--headless;--no-sandbox;--disable-dev-shm-usage;--ignore-certificate-errors;"]
