@@ -32,4 +32,3 @@ WORKDIR /usr/repo
 COPY . /usr/repo
 
 CMD ["/bin/sh", "-c"]
-# ENTRYPOINT ["mvn", "verify", "-Dwebdriver.driver=chrome", "-Dchrome.switches=--no-sandbox;--disable-dev-shm-usage;--ignore-certificate-errors;"]
