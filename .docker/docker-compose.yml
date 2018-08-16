@@ -12,5 +12,6 @@ services:
       dockerfile: .docker/Dockerfile
     volumes:
       - ./target:/usr/repo/target
+      - ~/.m2:/root/.m2
     depends_on:
     - selenium_server_chrome

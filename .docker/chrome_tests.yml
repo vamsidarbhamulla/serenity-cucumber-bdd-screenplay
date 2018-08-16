@@ -6,5 +6,5 @@ services:
       context: ../
       dockerfile: .docker/run_chrome_tests
     volumes:
-      - ./target:/usr/repo/target
-      - ~/.m2:/usr/repo/.m2
+      - ~/.m2:/root/.m2
+
