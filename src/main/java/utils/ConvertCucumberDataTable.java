@@ -56,6 +56,11 @@ public class ConvertCucumberDataTable {
             return Collections.unmodifiableMap(flatMap);
         }
 
+        addAllDataRowsToMap();
+        return Collections.unmodifiableMap(flatMap);
+    }
+
+    private void addAllDataRowsToMap() {
         Iterator iter = this.rows.iterator();
         int rowCnt = 0;
         while(iter.hasNext()) {
@@ -64,8 +69,6 @@ public class ConvertCucumberDataTable {
             addRowDataToMap(rowCnt, row);
             rowCnt++;
         }
-
-        return Collections.unmodifiableMap(flatMap);
     }
 
     private void addOnlySingleRowDataToMap() {
