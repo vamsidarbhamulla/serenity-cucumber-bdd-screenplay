@@ -1,14 +1,17 @@
-# serenity-cucumber-bdd-screenplay
-This is a test automation tutorial with serenity-cucumber-bdd-screenplay stack on one of the freely available test automation practice 
-website "http://automationpractice.com/index.php"
+# serenity-bdd-screenplay-cucumber framework
+
+This is a test automation tutorial with serenity-bdd-screenplay & cucumber that run tests on
+ one of the test automation practice website "http://automationpractice.com/index.php"
+
+The tests run with either webdriver or webdriver/selnium-server docker images.
 
 [![CircleCI](https://circleci.com/gh/vamsidarbhamulla/serenity-cucumber-bdd-screenplay.svg?style=svg)](https://circleci.com/gh/vamsidarbhamulla/serenity-cucumber-bdd-screenplay)
 
 ## Screenplay implementation
 
-These tests use tasks, actions, abilities, questions and page elements defined in `src/main/java/screenplay`.
+These tests use tasks, actions, abilities, questions and page elements defined in src/main/java/screenplay.
 
-The overall project structure is shown below:
+The screenplay package structure is shown below:
 ````
 + model
     Domain model classes
@@ -23,6 +26,11 @@ The overall project structure is shown below:
 + questions
     Objects used to query the application
 ````
+
+The above package structure is an idea to show how automation tests can be written implementing 
+screenplay design pattern and SOLID (Single Responsibility , Open/Closed, Liskov Substitution, 
+Interface Segregation, Depedency Injection) principles together using Serenity BDD framework.
+ 
 
 ## Get the code
 
@@ -41,9 +49,15 @@ Open a command window and run:
 This runs Cucumber features using Cucumber's JUnit runner. The `@RunWith(CucumberWithSerenity.class)` annotation on the `CucumberSerenityBDDRunner`
 class tells JUnit to kick off Cucumber.
 
+If you want to run the tests using firefox, make sure latest geckodriver is available on your system path. 
+
+Open a command window and run:
+
+    mvn clean verify -Dwebdriver.driver=firefox
+
 ## Viewing the reports
 
-Maven command provided above will produce a Serenity test report in the `target/site/serenity` directory. Go take a look!
+Maven commands provided above will produce a Serenity test report in the `target/site/serenity` directory. Go take a look!
 
 or 
 
@@ -55,23 +69,23 @@ This will bring a new server up with the test results report. You can access it 
 The server will start up after first few requests , so expect a 404 for the initial 4-5 requests.
 
 ## Running the Project Using Docker
-
+The Default Docker image use selenium-standalone-chrome container that run tests against
+ selenium-server using a chrome browser. 
+ 
 Open a command window and run:
 
     cd .docker
     docker-compose up --build
 
-The above will run the tests against selenium-standalone-chrome docker container.
-
-### If you prefer to run the tests against chrome driver docker
+### If you prefer to run the tests against chrome driver docker image
 
 Open a command window and run:
 
     cd .docker
     docker-compose -f chrome_tests.yml up --build
    
-Currently each commit on every branch that is pushed to github will be tested with the above image for all tests 
-in circle ci. The status of latest build on master is available on beginning of this doc.
+Currently each commit on every branch of this repository that is pushed to github will be tested with the above image for all tests 
+in circle ci. The status of latest build on master is available on beginning of this doc. 
  
 ## Licensing
 
