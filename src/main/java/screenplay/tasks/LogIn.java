@@ -6,7 +6,6 @@ import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
 import net.thucydides.core.annotations.Step;
 import screenplay.abilities.Authenticate;
-import screenplay.exceptions.CannotAuthenticateException;
 
 import static net.serenitybdd.screenplay.Tasks.instrumented;
 import static screenplay.user_interfaces.LoginForm.*;
@@ -29,7 +28,7 @@ public class LogIn implements Task {
         );
     }
 
-    private Authenticate authenticated(Actor actor) throws CannotAuthenticateException {
+    private Authenticate authenticated(Actor actor) {
        return Authenticate.as(actor);
     }
 
