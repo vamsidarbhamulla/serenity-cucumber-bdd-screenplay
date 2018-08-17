@@ -18,7 +18,7 @@ public class Start implements Task {
 
     private ApplicationHomePage applicationHomePage;
 
-    @Step("{0} starts and performs the step **#taskName**")
+    @Step("{0} starts and performs the step **#title**")
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(
                 Open.browserOn().the(applicationHomePage),
@@ -29,6 +29,10 @@ public class Start implements Task {
 
     public static Start prepareToSignIn() {
         return instrumented(Start.class, "Go to Login Screen", GoToLogin.called());
+    }
+
+    public static Start readyToSearch() {
+        return instrumented(Start.class, "User ready to Search", null);
     }
 
     public Start(String title, Performable steps) {
