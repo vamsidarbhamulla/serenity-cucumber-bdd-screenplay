@@ -1,27 +1,55 @@
 package features.search;
 
-import cucumber.api.PendingException;
+import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import net.serenitybdd.screenplay.actors.OnStage;
+import net.serenitybdd.screenplay.actors.OnlineCast;
+import screenplay.questions.SearchResults;
+import screenplay.questions.SearchResultsGridItemPrice;
+import screenplay.questions.SearchResultsGrid;
+import screenplay.questions.SearchResultsResponseTitle;
+import screenplay.tasks.SearchAnItem;
+import screenplay.tasks.Start;
+
+import java.util.List;
+
+import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
+import static net.serenitybdd.screenplay.actors.OnStage.theActorCalled;
+import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
+import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.is;
+import static screenplay.questions.ElementAvailability.Available;
 
 public class SearchItemsSD {
 
-    @Given("^that (.*) wants to buy T-shirt$")
-    public void carla_wants_to_buy_T_shirt(String username) throws Exception {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    @Before
+    public void set_the_stage(){
+        OnStage.setTheStage(new OnlineCast());
     }
 
-    @When("^s?he searches for T-shirts using the navigation menu$")
-    public void she_searches_for_T_shirts_using_the_navigation_menu() throws Exception {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    @Given("^that (.*) wants to buy (?:T-shirt|an item)$")
+    public void carla_wants_to_buy_T_shirt(String actor) {
+        theActorCalled(actor).wasAbleTo(Start.readyToSearch());
     }
 
-    @Then("^s?he should see the list of T-shirts with prices available for sale$")
-    public void she_should_see_the_list_of_T_shirts_with_prices_available_for_sale() throws Exception {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    @When("^s?he searches for (.*) using the navigation menu$")
+    public void she_searches_for_T_shirts_using_the_navigation_menu(List<String> keywords) {
+        theActorInTheSpotlight().attemptsTo(SearchAnItem.with(keywords.get(0)));
+    }
+
+    @When("^s?he searches for keyword (.*)$")
+    public void she_searches_for_keywords_using_the_navigation_menu(List<String> keywords) {
+        theActorInTheSpotlight().attemptsTo(SearchAnItem.with(keywords.get(0)));
+    }
+
+    @Then("^s?he should see the list of (.*) with prices available for sale$")
+    public void she_should_see_the_list_of_T_shirts_with_prices_available_for_sale(List<String> items)  {
+        theActorInTheSpotlight().should(
+            seeThat(SearchResults.resultsGrid(), is(Available)),
+                //seeThat(SearchResults.checkFor(), containsString(items.get(0))),
+                seeThat(SearchResults.price(), is(Available))
+        );
     }
 }
