@@ -46,17 +46,16 @@ Open a command window and run:
 
     mvn clean verify
 
-This runs Cucumber features using Cucumber's JUnit runner. The `@RunWith(CucumberWithSerenity.class)` annotation on the `CucumberSerenityBDDRunner`
-class tells JUnit to kick off Cucumber.
-
 If you want to run the tests using firefox, make sure latest geckodriver is available on your system path. 
 
 Open a command window and run:
 
     mvn clean verify -Dwebdriver.driver=firefox
 
-## Viewing the reports
+This runs Cucumber features using Cucumber's JUnit runner. The `@RunWith(CucumberWithSerenity.class)` annotation on the `CucumberSerenityBDDRunner`
+class tells JUnit to kick off Cucumber.
 
+## Viewing the reports
 Maven commands provided above will produce a Serenity test report in the `target/site/serenity` directory. Go take a look!
 
 or 
@@ -69,6 +68,7 @@ This will bring a new server up with the test results report. You can access it 
 The server will start up after first few requests , so expect a 404 for the initial 4-5 requests.
 
 ## Running the Project Using Docker
+The docker images use chrome browser and run in headless mode. 
 The Default Docker image use selenium-standalone-chrome container that run tests against
  selenium-server using a chrome browser. 
  
