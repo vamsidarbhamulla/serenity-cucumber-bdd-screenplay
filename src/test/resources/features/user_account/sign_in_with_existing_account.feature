@@ -1,12 +1,10 @@
 @cucumber
 @smoke
 Feature: Sign in with an existing account
-  As an online website user
-  I should be able to sign in with account credentials
+  As an online customer with a login account
+  user should be able to sign in with account credentials
   to purchase new items
   and access their order history
-
-
 
   Scenario: Sign in with valid user account
     Given that Carla is a registered member
