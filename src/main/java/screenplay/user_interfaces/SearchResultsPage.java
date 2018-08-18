@@ -9,7 +9,7 @@ public class SearchResultsPage extends PageObject {
             .locatedBy(".product_list.grid.row");
     public static Target PRODUCTS_PRICE_LIST = Target.the("Products price list")
             .locatedBy("#center_column > ul > li > div > div.right-block > div.content_price > span");
-    public static Target SEARCH_RESULTS_TITLE = Target.the("Add item to cart")
+    public static Target SEARCH_RESULTS_TITLE = Target.the("Search results title")
             .locatedBy("//*[@id='center_column']/h1/span[1]");
     public static Target ADD_ITEM_TO_CART = Target.the("Add item to cart")
             .locatedBy("a.button.ajax_add_to_cart_button.btn.btn-default>span");
