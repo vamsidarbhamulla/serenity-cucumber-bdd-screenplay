@@ -6,9 +6,9 @@ Feature: Search for an item
   user should be able to search for an item
 
   Scenario: Search products from navigation-menu
-    Given that Carla wants to buy T-shirt
-    When she searches for T-shirt using the navigation menu
-    Then she should see the list of T-shirts with prices available for sale
+    Given that Carla wants to buy Blouse
+    When she searches for blouses using the navigation menu
+    Then she should see the list of blouses with prices available for sale
 
   Scenario Outline: Search products with a keyword
     Given that Carla wants to buy an item

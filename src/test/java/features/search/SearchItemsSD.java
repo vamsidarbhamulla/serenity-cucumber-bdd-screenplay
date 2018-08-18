@@ -7,9 +7,7 @@ import cucumber.api.java.en.When;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
 import screenplay.questions.SearchResults;
-import screenplay.questions.SearchResultsGridItemPrice;
-import screenplay.questions.SearchResultsGrid;
-import screenplay.questions.SearchResultsResponseTitle;
+import screenplay.tasks.NavigateMenu;
 import screenplay.tasks.SearchAnItem;
 import screenplay.tasks.Start;
 
@@ -29,14 +27,14 @@ public class SearchItemsSD {
         OnStage.setTheStage(new OnlineCast());
     }
 
-    @Given("^that (.*) wants to buy (?:T-shirt|an item)$")
+    @Given("^that (.*) wants to buy (?:Blouse|an item)$")
     public void carla_wants_to_buy_T_shirt(String actor) {
         theActorCalled(actor).wasAbleTo(Start.readyToSearch());
     }
 
     @When("^s?he searches for (.*) using the navigation menu$")
     public void she_searches_for_T_shirts_using_the_navigation_menu(List<String> keywords) {
-        theActorInTheSpotlight().attemptsTo(SearchAnItem.with(keywords.get(0)));
+        theActorInTheSpotlight().attemptsTo(NavigateMenu.toBlousesItem());
     }
 
     @When("^s?he searches for keyword (.*)$")
@@ -45,10 +43,10 @@ public class SearchItemsSD {
     }
 
     @Then("^s?he should see the list of (.*) with prices available for sale$")
-    public void she_should_see_the_list_of_T_shirts_with_prices_available_for_sale(List<String> items)  {
+    public void she_should_see_the_list_of_items_with_prices_available_for_sale(List<String> items)  {
         theActorInTheSpotlight().should(
-            seeThat(SearchResults.resultsGrid(), is(Available)),
-                //seeThat(SearchResults.checkFor(), containsString(items.get(0))),
+                seeThat(SearchResults.resultsGrid(), is(Available)),
+                seeThat(SearchResults.checkForTitle(), containsString(items.get(0))),
                 seeThat(SearchResults.price(), is(Available))
         );
     }
