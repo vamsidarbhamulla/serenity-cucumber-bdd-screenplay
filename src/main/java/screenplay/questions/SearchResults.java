@@ -12,7 +12,7 @@ public class SearchResults {
         return new SearchResultsGridItemPrice();
     }
 
-    public static Question<String> checkFor() {
+    public static Question<String> checkForTitle() {
         return new SearchResultsResponseTitle();
     }
 }

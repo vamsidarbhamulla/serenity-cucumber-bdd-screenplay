@@ -2,17 +2,16 @@ package screenplay.questions;
 
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Question;
-import net.serenitybdd.screenplay.questions.Attribute;
+import net.serenitybdd.screenplay.questions.Text;
+import screenplay.user_interfaces.SearchResultsPage;
 
-import static screenplay.user_interfaces.SearchResultsPage.SEARCH_RESULTS_TITLE;
 
 public class SearchResultsResponseTitle implements Question<String> {
 
     @Override
     public String answeredBy(Actor actor) {
-        return Attribute.of(SEARCH_RESULTS_TITLE).named("Search results title")
+        return Text.of(SearchResultsPage.SEARCH_RESULTS_TITLE)
                 .viewedBy(actor)
-                .asString();
+                .asString().toLowerCase();
     }
-
 }
