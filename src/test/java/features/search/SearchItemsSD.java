@@ -32,8 +32,8 @@ public class SearchItemsSD {
         theActorCalled(actor).wasAbleTo(Start.readyToSearch());
     }
 
-    @When("^s?he searches for (.*) using the navigation menu$")
-    public void she_searches_for_T_shirts_using_the_navigation_menu(List<String> keywords) {
+    @When("^s?he searches for blouses using the navigation menu$")
+    public void she_searches_for_T_shirts_using_the_navigation_menu() {
         theActorInTheSpotlight().attemptsTo(NavigateMenu.toBlousesItem());
     }
 
