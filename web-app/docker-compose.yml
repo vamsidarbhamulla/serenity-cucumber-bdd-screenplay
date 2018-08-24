@@ -8,6 +8,9 @@ services:
     - MARIADB_DATABASE=bitnami_prestashop
     volumes:
     - 'mariadb_data:/bitnami'
+    networks:
+      - web_tests
+    privileged: true
   prestashop:
     image: 'bitnami/prestashop:latest'
     environment:
@@ -26,8 +29,15 @@ services:
     - 'prestashop_data:/bitnami'
     depends_on:
     - mariadb
+    networks:
+      - web_tests
+    privileged: true
 volumes:
   mariadb_data:
     driver: local
   prestashop_data:
     driver: local
+
+networks:
+  web_tests:
+    name: web_tests
