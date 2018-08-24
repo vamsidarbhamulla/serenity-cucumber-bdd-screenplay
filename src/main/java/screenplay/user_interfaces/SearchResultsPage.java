@@ -6,14 +6,17 @@ import net.serenitybdd.screenplay.targets.Target;
 public class SearchResultsPage extends PageObject {
 
     public static Target SEARCH_RESULTS_GRID = Target.the("Search results grid")
-            .locatedBy(".product_list.grid.row");
-    public static Target PRODUCTS_PRICE_LIST = Target.the("Products price list")
-            .locatedBy("#center_column > ul > li > div > div.right-block > div.content_price > span");
+            .locatedBy("#products");
+    public static Target FIRST_PRODUCT_PRICE = Target.the("Products price list")
+            .locatedBy("#js-product-list > div.products.row > article:nth-child(1) > div > div.product-description > div > span.price");
     public static Target SEARCH_RESULTS_TITLE = Target.the("Search results title")
-            .locatedBy("//*[@id='center_column']/h1/span[1]");
-    public static Target ADD_ITEM_TO_CART = Target.the("Add item to cart")
-            .locatedBy("a.button.ajax_add_to_cart_button.btn.btn-default>span");
-    public static Target PROCEED_TO_CHECKOUT = Target.the("Proceed to checkout")
-            .locatedBy("//*[@class='btn btn-default button button-medium'][@title='Proceed to checkout']/span");
+            .locatedBy("#js-product-list-top > div.col-md-6.hidden-sm-down.total-products > p");
+
+    public static Target FIRST_MATCHED_ITEM = Target.the("First Item Name") // #TODO Make it generic to work for any item
+            .locatedBy("#js-product-list > div.products.row > article:nth-child(1) > div > div.product-description > h2 > a");
+    public static Target QUICK_VIEW_LINK = Target.the("Quick view link")
+            .locatedBy("#js-product-list > div.products.row > article:nth-child(1) > div > div.highlighted-informations.hidden-sm-down > a");
+    public static Target FIRST_MATCHED_PRODUCT_PRICE = Target.the("Products price list") // #TODO Make it generic to work for any item
+            .locatedBy("#js-product-list > div.products.row > article:nth-child(1) > div > div.product-description > div > span.price");
 
 }
