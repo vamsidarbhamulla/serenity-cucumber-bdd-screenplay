@@ -32,7 +32,7 @@ public class UserLoginStepDef {
                 .wasAbleTo(Start.prepareToSignIn());
     }
 
-    @When("^(?:he|she|they) logs in with valid credentials$")
+    @When("^(?:he|she|they|Byron) logs in with valid credentials$")
     public void user_has_signed_in_with_their_account(DataTable credentials){
         theActorInTheSpotlight()
                 .whoCan(Authenticate.with(credentials))
@@ -43,7 +43,7 @@ public class UserLoginStepDef {
     public void user_should_be_able_to_view_their_account_profile(){
         theActorInTheSpotlight()
                 .should(seeThat(UserAccount.loaded(),
-                        displays("title", equalTo("My account - My Store"))));
+                        displays("title", equalTo("My account"))));
     }
 
 }
