@@ -1,0 +1,33 @@
+version: '3.6'
+services:
+  mariadb:
+    image: 'bitnami/mariadb:latest'
+    environment:
+    - ALLOW_EMPTY_PASSWORD=yes
+    - MARIADB_USER=bn_prestashop
+    - MARIADB_DATABASE=bitnami_prestashop
+    volumes:
+    - 'mariadb_data:/bitnami'
+  prestashop:
+    image: 'bitnami/prestashop:latest'
+    environment:
+    - PRESTASHOP_HOST=localhost
+    - MARIADB_HOST=mariadb
+    - MARIADB_PORT_NUMBER=3306
+    - PRESTASHOP_DATABASE_USER=bn_prestashop
+    - PRESTASHOP_DATABASE_NAME=bitnami_prestashop
+    - ALLOW_EMPTY_PASSWORD=yes
+    - PRESTASHOP_COOKIE_CHECK_IP=no
+    - APACHE_HTTP_PORT_NUMBER=90
+    ports:
+    - '90:90'
+    - '443:443'
+    volumes:
+    - 'prestashop_data:/bitnami'
+    depends_on:
+    - mariadb
+volumes:
+  mariadb_data:
+    driver: local
+  prestashop_data:
+    driver: local
