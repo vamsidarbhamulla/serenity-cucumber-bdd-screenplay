@@ -38,4 +38,5 @@ jobs:
         key: v1-dependencies-{{ checksum "pom.xml" }}
 
     # run tests!
-    - run: mvn verify -Dwebdriver.driver=chrome -Dchrome.switches="--headless;--no-sandbox;--disable-dev-shm-usage;--ignore-certificate-errors";
+    # - run: mvn verify -Dwebdriver.driver=chrome -Dchrome.switches="--headless;--no-sandbox;--disable-dev-shm-usage;--ignore-certificate-errors";
+    - run: mvn test
