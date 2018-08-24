@@ -11,5 +11,5 @@ public class GlobalHeader extends PageObject {
     public static WebElementFacade SEARCH_BTN;
 
     public static Target SEARCH_BAR = Target.the("Search bar field")
-            .locatedBy("#search_query_top");
+            .locatedBy("#search_widget > form > input.ui-autocomplete-input");
 }

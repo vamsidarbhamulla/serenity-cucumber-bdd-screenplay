@@ -5,7 +5,7 @@ import net.serenitybdd.screenplay.targets.Target;
 
 public class GlobalMenu extends PageObject {
 
-    public static Target WOMEN = Target.the("Women Top Menu Option").locatedBy("#block_top_menu > ul > li:nth-child(1) > a");
-    public static Target  BLOUSES = Target.the("Blouses Menu Option under Women").locatedBy("#block_top_menu > ul > li:nth-child(1) > ul > li:nth-child(1) > ul > li:nth-child(2) > a");
+    public static Target CLOTHES = Target.the("Clothes Top Menu Option").locatedBy("#category-3 > a");
+    public static Target WOMEN = Target.the("Women Menu Option under clothes").locatedBy("#category-5 > a");
 
 }
