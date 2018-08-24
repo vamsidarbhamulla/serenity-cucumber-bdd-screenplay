@@ -46,6 +46,17 @@ Open a command window and run:
     
 Make sure the docker images downloaded and started. Then Open the [web-app-from-here](http:localhost:900)
 
+### Test data required to run the tests 
+
+Create three accounts :
+
+ | username                              | password | first name| last name     |
+ | carla_the_online_customer@getnada.com | password | Carla     | OnlineCustomer|
+ | adam_the_web_admin@mailinator.com     | password | Adam      | WebAdmin      |
+ | byron_the_buyer@cmail.club            | password | Byron     | Buyer         |
+ 
+ sign in with byron account and add an address.
+
 ## Running the Project Using Maven
 This requires webdriver setup. By default the tests run on Chrome, you need to set the latest chromedriver instance on your system path.
 
