@@ -192,7 +192,7 @@
         <serenity.cucumber.version>1.9.14</serenity.cucumber.version>
         <webdriver.driver>chrome</webdriver.driver>
         <parallel.tests>4</parallel.tests>
-        <webdriver.base.url>http://localhost:900</webdriver.base.url>
+        <webdriver.base.url>http://localhost:90</webdriver.base.url>
         <encoding>UTF-8</encoding>
         <serenity.runner>SimpleRunner</serenity.runner>
     </properties>
