@@ -1,9 +1,7 @@
 # serenity-bdd-screenplay-cucumber framework
 
 This is a test automation tutorial with serenity-bdd-screenplay & cucumber that run tests on
- one of the test automation practice website "http://automationpractice.com/index.php"
-
-The tests run with either webdriver or webdriver/selnium-server docker images.
+ Prestashop demo website built on your local machine "http:localhost:90". You can find the view of demo website [here](http://demo.prestashop.com/en/?view=front).
 
 [![CircleCI](https://circleci.com/gh/vamsidarbhamulla/serenity-cucumber-bdd-screenplay.svg?style=svg)](https://circleci.com/gh/vamsidarbhamulla/serenity-cucumber-bdd-screenplay)
 
@@ -39,6 +37,15 @@ Git:
     git clone https://github.com/vamsidarbhamulla/serenity-cucumber-bdd-screenplay.git
     cd serenity-cucumber-bdd-screenplay
 
+## Build the webapp using docker
+
+Open a command window and run:
+
+    cd web-app
+    docker-compose up
+    
+Make sure the docker images downloaded and started. Then Open the [web-app-from-here](http:localhost:900)
+
 ## Running the Project Using Maven
 This requires webdriver setup. By default the tests run on Chrome, you need to set the latest chromedriver instance on your system path.
 
@@ -52,8 +59,14 @@ Open a command window and run:
 
     mvn clean verify -Dwebdriver.driver=firefox
 
-This runs Cucumber features using Cucumber's JUnit runner. The `@RunWith(CucumberWithSerenity.class)` annotation on the `CucumberSerenityBDDRunner`
+This runs Cucumber features using Cucumber's JUnit runner. The `@RunWith(CucumberWithSerenity.class)` annotation on the `CucumberSerenityBDDSimpleRunner`
 class tells JUnit to kick off Cucumber.
+
+## Running tests in parallel using Maven
+
+Open a command window and run:
+
+    mvn clean verify -Dserenity.runner=ParallelRunner
 
 ## Viewing the reports
 Maven commands provided above will produce a Serenity test report in the `target/site/serenity` directory. Go take a look!
@@ -64,29 +77,11 @@ Open a command window and run:
 
     mvn jetty:run
     
-This will bring a new server up with the test results report. You can access it from [http://localhost:9999]
-The server will start up after first few requests , so expect a 404 for the initial 4-5 requests.
+This will bring a new server up with the test results report. You can access the reports from [Serenity-Reports](http://localhost:9999) link.
 
-## Running the Project Using Docker
-The docker images use chrome browser and run in headless mode. 
-The Default Docker image use selenium-standalone-chrome container that run tests against
- selenium-server using a chrome browser. 
- 
-Open a command window and run:
+General Note : The server will start up after first few requests , so expect a 404 for the initial 4-5 requests.
 
-    cd .docker
-    docker-compose up --build
-
-### If you prefer to run the tests against chrome driver docker image
-
-Open a command window and run:
-
-    cd .docker
-    docker-compose -f chrome_tests.yml up --build
    
-Currently each commit on every branch of this repository that is pushed to github will be tested with the above image for all tests 
-in circle ci. The status of latest build on master is available on beginning of this doc. 
- 
 ## Licensing
 
 This distribution, as a whole, is licensed under the terms of the Apache License, Version 2.0
