@@ -75,17 +75,22 @@
                 <version>2.22.0</version>
                 <configuration>
                     <includes>
-                        <include>**/features/*Runner.java</include>
+                        <include>**/*${serenity.runner}*.java</include>
                         <include>**/features/**/SD*.java</include>
                         <include>**/features/**/*SD.java</include>
+                        <include>**/features/**/*Steps.java</include>
                         <include>**/features/**/*StepDef.java</include>
                     </includes>
                     <systemProperties>
                         <webdriver.base.url>${webdriver.base.url}</webdriver.base.url>
                     </systemProperties>
+                    <additionalClasspathElements>
+                        <additionalClasspathElement>resources</additionalClasspathElement>
+                    </additionalClasspathElements>
                     <parallel>classes</parallel>
                     <threadCount>${parallel.tests}</threadCount>
                     <forkCount>${parallel.tests}</forkCount>
+                    <perCoreThreadCount>true</perCoreThreadCount>
                 </configuration>
                 <executions>
                     <execution>
@@ -115,6 +120,38 @@
                         <goals>
                             <goal>aggregate</goal>
                         </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.github.temyers</groupId>
+                <artifactId>cucumber-jvm-parallel-plugin</artifactId>
+                <version>5.0.0</version>
+                <executions>
+                    <execution>
+                        <id>generateRunners</id>
+                        <phase>generate-test-sources</phase>
+                        <goals>
+                            <goal>generateRunners</goal>
+                        </goals>
+                        <configuration>
+                            <!-- Mandatory -->
+                            <!-- List of package names to scan for glue code. -->
+                            <glue>
+                                <package>features</package>
+                               <!-- <package>features.user_account</package>-->
+                            </glue>
+                            <tags>
+                                <tag>@smoke</tag>
+                                <!--<tag>~@smoke</tag>-->
+                               <!-- <tag>@important</tag>-->
+                            </tags>
+                            <namingScheme>pattern</namingScheme>
+                            <namingPattern>CucumberSerenityBDDParallelRunner{c}</namingPattern>
+                            <parallelScheme>FEATURE</parallelScheme>
+                            <customVmTemplate>src/test/resources/cucumber-serenity-runner.vm</customVmTemplate>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
@@ -155,7 +192,8 @@
         <serenity.cucumber.version>1.9.14</serenity.cucumber.version>
         <webdriver.driver>chrome</webdriver.driver>
         <parallel.tests>4</parallel.tests>
-        <webdriver.base.url>http://automationpractice.com</webdriver.base.url>
+        <webdriver.base.url>http://localhost:900</webdriver.base.url>
         <encoding>UTF-8</encoding>
+        <serenity.runner>SimpleRunner</serenity.runner>
     </properties>
 </project>
