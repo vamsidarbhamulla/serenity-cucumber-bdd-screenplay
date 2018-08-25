@@ -15,7 +15,6 @@ public class AddItemToCart {
 
     public static Task fromSearchResultsPage(){
         return Task.where("Add item to Cart",
-                Scroll.to(SearchResultsPage.FIRST_MATCHED_ITEM),
                 Hover.over(SearchResultsPage.FIRST_PRODUCT_PRICE),
                 Check.whether(
                         valueOf(SearchResultsPage.QUICK_VIEW_LINK),isCurrentlyEnabled())
