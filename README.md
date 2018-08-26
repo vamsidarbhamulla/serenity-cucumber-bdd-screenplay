@@ -44,7 +44,7 @@ Open a command window and run:
     cd web-app
     docker-compose up
     
-Make sure the docker images downloaded and started. Then Open the [web-app-from-here](http:localhost:900)
+Make sure the docker images downloaded and started. Then Open the [web-app-from-here](http:localhost:90)
 
 ### Test data required to run the tests 
 
@@ -71,8 +71,14 @@ If you want to run the tests using firefox, make sure latest geckodriver is avai
 Open a command window and run:
 
     mvn clean verify -Dwebdriver.driver=firefox
+    
+If you want to run the tests using internet explorer, make sure latest internetexplorerdriver is available on your system path. 
 
-This runs Cucumber features using Cucumber's JUnit runner. The `@RunWith(CucumberWithSerenity.class)` annotation on the `CucumberSerenityBDDSimpleRunner`
+Open a command window and run:
+
+    mvn clean verify -Dwebdriver.driver=iexplorer
+
+These commands run Cucumber features using Cucumber's JUnit runner. The `@RunWith(CucumberWithSerenity.class)` annotation on the `CucumberSerenityBDDSimpleRunner`
 class tells JUnit to kick off Cucumber.
 
 ## Running tests in parallel using Maven

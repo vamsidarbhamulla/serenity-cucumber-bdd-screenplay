@@ -1,6 +1,8 @@
 version: '3.6'
 services:
   mariadb:
+    container_name: mariadb
+    hostname: mariadb
     image: 'bitnami/mariadb:latest'
     environment:
     - ALLOW_EMPTY_PASSWORD=yes
@@ -13,6 +15,8 @@ services:
     privileged: true
   prestashop:
     image: 'bitnami/prestashop:latest'
+    container_name: prestashop
+    hostname: prestashop
     environment:
     - PRESTASHOP_HOST=localhost
     - MARIADB_HOST=mariadb
