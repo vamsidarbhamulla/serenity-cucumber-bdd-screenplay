@@ -1,4 +1,11 @@
 
 \.idea/
+\.gradle/
 target/
 *.iml
+*.log
+scripts/build_chrome_driver.sh
+scripts/run_tests.sh
+.docker/Dockerfile6
+*.class
+build/
