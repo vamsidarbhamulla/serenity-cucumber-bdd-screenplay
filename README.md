@@ -44,7 +44,8 @@ Open a command window and run:
     cd web-app
     docker-compose up
     
-Make sure the docker images downloaded and started. Then Open the [web-app-from-here](http:localhost:90)
+Make sure the docker images downloaded and started. Then Open the web-app from [here](http:localhost:90) 
+or open a browser and type http://localhost:90.
 
 ### Test data required to run the tests 
 
@@ -100,6 +101,28 @@ This will bring a new server up with the test results report. You can access the
 
 General Note : The server will start up after first few requests , so expect a 404 for the initial 4-5 requests.
 
+## Running the Project Using Gradle
+This requires webdriver setup. By default the tests run on Chrome, you need to set the latest chromedriver instance on your system path.
+
+Open a command window and run:
+
+    ./gradle.bat test (For Windows Machines)
+    ./gradlew test  (For Linux based and Mac)
+
+If you want to run the tests using firefox, make sure latest geckodriver is available on your system path. 
+
+Open a command window and run:
+
+     ./gradlew test -Dwebdriver.driver=firefox
+    
+If you want to run the tests using internet explorer, make sure latest internetexplorerdriver is available on your system path. 
+
+Open a command window and run:
+
+    ./gradlew test -Dwebdriver.driver=iexplorer
+
+These commands run Cucumber features using Cucumber's JUnit runner. The `@RunWith(CucumberWithSerenity.class)` annotation on the `CucumberSerenityBDDSimpleRunner`
+class tells JUnit to kick off Cucumber.
    
 ## Licensing
 
