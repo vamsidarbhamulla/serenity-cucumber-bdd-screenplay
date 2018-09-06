@@ -56,6 +56,15 @@ Open a command window and run:
 
     mvn clean verify -Dwebdriver.driver=iexplorer
 
+If you want to run the tests using Android , make sure Appium installed and run on http://localhost:4723 and provide the exact expected chromedriver as part of it. 
+
+Open a command window and run
+
+    mvn clean verify -Dwebdriver.base.url="http://serenitybddpractice.com" -Dappium.hub="http://localhost:4723/
+    wd/hub" -Dwebdriver.driver=appium -Dappium.platform=ANDROID -Dappium.platformName=Android -Dappium.automation
+    Name=uiautomator2 -Dappium.browserName=chrome -Dappium.deviceName="emulator_5554" -Dappium.nativeWebScreensho
+    t=true -Dappium.androidScreenshotPath='target/screenshots'; 
+
 These commands run Cucumber features using Cucumber's JUnit runner. The `@RunWith(CucumberWithSerenity.class)` annotation on the `CucumberSerenityBDDSimpleRunner`
 class tells JUnit to kick off Cucumber.
 
@@ -97,6 +106,15 @@ If you want to run the tests using internet explorer, make sure latest internete
 Open a command window and run:
 
     ./gradlew test -Dwebdriver.driver=iexplorer
+
+If you want to run the tests using Android , make sure Appium installed and run on http://localhost:4723 and provide the exact expected chromedriver as part of it. 
+
+Open a command window and run
+
+    ./gradlew test -Dwebdriver.base.url="http://serenitybddpractice.com" -Dappium.hub="http://localhost:4723/
+    wd/hub" -Dwebdriver.driver=appium -Dappium.platform=ANDROID -Dappium.platformName=Android -Dappium.automation
+    Name=uiautomator2 -Dappium.browserName=chrome -Dappium.deviceName="emulator_5554" -Dappium.nativeWebScreensho
+    t=true -Dappium.androidScreenshotPath='target/screenshots';     
 
 These commands run Cucumber features using Cucumber's JUnit runner. The `@RunWith(CucumberWithSerenity.class)` annotation on the `CucumberSerenityBDDSimpleRunner`
 class tells JUnit to kick off Cucumber.
