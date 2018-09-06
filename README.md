@@ -1,8 +1,8 @@
 # serenity-bdd-screenplay-cucumber framework
 
 This is a test automation tutorial with serenity-bdd-screenplay & cucumber that run tests on
- Prestashop demo website built on your local machine "http:localhost:90". You can find the view of demo website [here](http://demo.prestashop.com/en/?view=front).
-
+ Prestashop demo website hosted [serenitybddpractice.com](http://serenitybddpractice.com)
+ 
 [![CircleCI](https://circleci.com/gh/vamsidarbhamulla/serenity-cucumber-bdd-screenplay.svg?style=svg)](https://circleci.com/gh/vamsidarbhamulla/serenity-cucumber-bdd-screenplay)
 
 ## Screenplay implementation
@@ -36,29 +36,6 @@ Git:
 
     git clone https://github.com/vamsidarbhamulla/serenity-cucumber-bdd-screenplay.git
     cd serenity-cucumber-bdd-screenplay
-
-## Build the webapp using docker
-
-Open a command window and run:
-
-    cd web-app
-    docker-compose up
-    
-Make sure the docker images downloaded and started. Then Open the web-app from [here](http:localhost:90) 
-or open a browser and type http://localhost:90.
-
-### Test data required to run the tests 
-
-1. Create three accounts as mentioned in the table.
-2. After that sign in with byron account and add an address.
-
- |username| password | first name| last name|
- |---|:---:|:---:|---:|
- |carla_the_online_customer@getnada.com| password | Carla     | OnlineCustomer|
- | adam_the_web_admin@mailinator.com| password | Adam      | WebAdmin      |
- | byron_the_buyer@cmail.club| password | Byron     | Buyer         |
- 
-  
 
 ## Running the Project Using Maven
 This requires webdriver setup. By default the tests run on Chrome, you need to set the latest chromedriver instance on your system path.
@@ -123,6 +100,26 @@ Open a command window and run:
 
 These commands run Cucumber features using Cucumber's JUnit runner. The `@RunWith(CucumberWithSerenity.class)` annotation on the `CucumberSerenityBDDSimpleRunner`
 class tells JUnit to kick off Cucumber.
+
+## Running the Project Using Docker
+
+Open a command window and run:
+
+    cd .docker
+    docker-compose up --build
+
+The above will run the tests against selenium-standalone-chrome docker container.
+
+### If you prefer to run the tests against chrome driver docker
+
+Open a command window and run:
+
+    cd .docker
+    docker-compose -f chrome_tests.yml up --build
+   
+Currently each commit on every branch that is pushed to github will be tested with the above image for all tests 
+in circle ci. The status of latest build on master is available on beginning of this doc.
+
    
 ## Licensing
 
